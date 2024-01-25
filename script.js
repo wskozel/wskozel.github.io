@@ -68,7 +68,7 @@ function extractDetailsFromTitleLine(line) {
 
 function extractDetailsFromPriceLine(line) {
   // Extract price and status
-  var priceMatch = line.match(/\^\(--\$(.*?) \/ (.*?)\)/);
+  var titleMatch = line.match(/\[([\*~]*)(.*?)\1\]\((.*?)\)/);
   var price = priceMatch ? priceMatch[1] : "";
   var status = priceMatch ? priceMatch[2] : "";
 
