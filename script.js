@@ -6,14 +6,10 @@ function addItem(title = "", price = "", imageLink = "", status = "Available") {
   var itemDiv = document.createElement("div");
   itemDiv.className = "container";
   itemDiv.innerHTML = `
-        <label>Title:</label>
-        <input type="text" class="item-input" id="itemTitle${itemCount}" value="${title}" oninput="handleTitleInput(event, ${itemCount})">
-        <label>Price:</label>
-        <input type="text" class="item-input" id="itemPrice${itemCount}" value="${price}" oninput="generateMarkdown()">
-        <label>Image Link:</label>
-        <input type="text" class="item-input" id="itemImageLink${itemCount}" value="${imageLink}" oninput="generateMarkdown()">
-        <label>Status:</label>
-        <select class="item-input" id="itemStatus${itemCount}" onchange="generateMarkdown()">
+        <input type="text" class="item-input" id="itemTitle${itemCount}" value="${title}" oninput="handleTitleInput(event, ${itemCount})"placeholder="Item Title">
+        <input type="text" class="item-input" id="itemPrice${itemCount}" value="${price}" oninput="generateMarkdown()"placeholder="Price">
+        <input type="text" class="item-input" id="itemImageLink${itemCount}" value="${imageLink}" oninput="generateMarkdown()"placeholder="Link to Image">
+        <select class="item-input" id="itemStatus${itemCount}" onchange="generateMarkdown()"placeholder="Available">
             <option value="Available"${
               status === "Available" ? " selected" : ""
             }>Available</option>
@@ -24,6 +20,18 @@ function addItem(title = "", price = "", imageLink = "", status = "Available") {
               status === "Sold" ? " selected" : ""
             }>Sold</option>
         </select>
+        <button class="collapse-button2">Add Desc</button>
+        <div class="flex-item">
+        <div class="desc">
+        <textarea
+        id="desc"
+        class="item-input"
+        oninput="generateMarkdown()"
+        rows="4"  
+        style="width: 100%"
+      ></textarea>
+      </div>
+
     `;
   document.getElementById("itemContainer").appendChild(itemDiv);
 }
@@ -225,6 +233,22 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       content.style.display = "block";
       collapsible.innerHTML = "🫣 Hide";
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  var collapsible = document.querySelector(".collapse-button2");
+  var content = document.querySelector(".desc");
+
+  collapsible.addEventListener("click", function () {
+    this.classList.toggle("active");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      collapsible.innerHTML = "Add Desc";
+    } else {
+      content.style.display = "block";
+      collapsible.innerHTML = "Hide Desc";
     }
   });
 });
