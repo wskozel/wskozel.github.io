@@ -58,17 +58,18 @@ function parseMarkdown() {
 }
 
 function extractDetailsFromTitleLine(line) {
-  // Extract title and image link
-  var titleMatch = line.match(/\[\*\*(.*?)\*\*\]\((.*?)\)/);
-  var title = titleMatch ? titleMatch[1] : "";
-  var imageLink = titleMatch ? titleMatch[2] : "";
+  // Extract title and image link, stripping markdown syntax
+  var titleMatch = line.match(/\[([\*~]*)(.*?)\1\]\((.*?)\)/);
+  var title = titleMatch ? titleMatch[2].replace(/[\*~]/g, '') : ""; // Remove asterisks and tildes
+  var imageLink = titleMatch ? titleMatch[3] : "";
 
   return { title, imageLink };
 }
 
+
 function extractDetailsFromPriceLine(line) {
   // Extract price and status
-  var titleMatch = line.match(/\[([\*~]*)(.*?)\1\]\((.*?)\)/);
+  var priceMatch = line.match(/\^\(--\$(.*?) \/ (.*?)\)/);
   var price = priceMatch ? priceMatch[1] : "";
   var status = priceMatch ? priceMatch[2] : "";
 
