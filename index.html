@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAFS Formatter</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pixelbrackets/gfm-stylesheet/dist/gfm.min.css">
+<link rel="stylesheet" href="styles.css">"
+  </head>
+  <body>
+    <div class="center-container">
+      <h2>GAFS Auto Formatter</h2>
+      <div class="form-group">
+        <div class="form-group flex-group">
+            <div class="flex-item">
+              <label for="timestampLink">Timestamp Link:<sup class="small"> *</sup></label>
+              <input
+                type="text"
+                id="timestampLink"
+                class="item-input"
+                oninput="generateMarkdown()"
+              />
+            </div>
+            <div class="flex-item">
+              <label for="userName">Reddit Username:</label>
+              <input
+                type="text"
+                id="userName"
+                class="item-input"
+                oninput="generateMarkdown()"
+              />
+            </div>
+          </div>
+          <hr>
+          <button class="collapse-button">🔀 Paste</button>
+          <div class="paste">
+            <label for="pasteMarkdown">Paste Previous Listing Here:</label>
+            <textarea id="pasteMarkdown" rows="5" style="width: 100%" class="item-input"></textarea>
+            <button class="button" onclick="parseMarkdown()">⚙️ Parse</button>
+        </div>
+      <div class="form-group">
+        <hr>
+        <h4><label for="introText">Intro:</label></h4>
+        <input
+          type="text"
+          id="introText"
+          class="item-input"
+          oninput="generateMarkdown()"
+        />
+      </div>
+      <div id="itemContainer" class="container"></div>
+      <div class="form-group">
+    <h4><label for="outroText">Outro and Trade Interests:</label></h4>
+        <input
+          type="text"
+          id="outroText"
+          class="item-input"
+          oninput="generateMarkdown()"
+        />
+      </div>
+      <hr>
+      <h3>Live Preview:</h3>
+      <div class="preview-container">
+        <div class="preview" id="livePreview"></div>
+    </div>
+    <hr>
+        <div class="markdown-output-container">
+            <div class="output-header">
+                <h3>Markdown Output:</h3>
+            </div>
+            <textarea id="markdownOutput" rows="10" style="width: 100%;"></textarea>
+        </div>
+        
+      <div class="center">
+        <div class="button-container">
+            <button class="button" onclick="copyMarkdown()">📋 Copy Markdown</button>
+            <button class="button-red" onclick="clearAllFields()">🗑️ Reset Form</button>
+        </div>       
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  </body>
+</html>

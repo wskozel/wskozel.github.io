@@ -1,0 +1,228 @@
+        .flex-group {
+            display: flex;
+            justify-content: space-between;
+            /* This will space out the flex items */
+            flex-wrap: wrap;
+            /* This allows items to wrap onto the next line on smaller screens */
+        }
+
+        .flex-item {
+            flex: 1;
+            /* Each flex item will grow equally */
+            min-width: 250px;
+            /* Minimum width before wrapping */
+            padding: 5px;
+            /* Add some padding around the items */
+        }
+
+        body {
+            font-family: "Arial", sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .center-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .paste {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+        }
+        
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 7px 7px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 30px;
+            /* Add some space between the button and the title */
+            margin-top: 10px;
+        }
+
+        .button-red {
+            background-color: #c30027;
+            color: white;
+            padding: 7px 7px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 30px;
+            /* Add some space between the button and the title */
+            margin-top: 10px;
+        }
+        .collapse-button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 30px;
+            /* Add some space between the button and the title */
+            margin-top: 8px;
+        }
+
+        .button-red:hover {
+            background-color: #ff0033;
+            text-decoration: dashed;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .collapse-button:hover{
+            background-color: #0056b3;
+        }
+
+        .output-container,
+        .preview-container {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+
+        .preview {
+            overflow-x: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-direction: row;
+            /* Stack flex items vertically */
+        }
+
+        .item-input {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Flex container for form elements including the button */
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            /* Adjust the gap as needed */
+        }
+
+        /* Specific style for the 'Add Item' button */
+        .add-item-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            /* Adjust margin as needed */
+            flex-basis: 100%;
+            /* Makes the button take the full width */
+        }
+
+        /* Style adjustments for input fields for a consistent look */
+        .item-input,
+        .select-input {
+            flex: 1;
+            min-width: 120px;
+            /* Adjust as needed for a responsive design */
+        }
+
+        .select-input {
+            padding: 0.5rem;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            /* Space out the title and button */
+            align-items: center;
+            /* Center items vertically */
+            padding-bottom: 10px;
+            /* Space between the header and the textarea */
+        }
+
+        .markdown-output-container {
+            display: flex;
+            flex-direction: column;
+            /* Stack children vertically */
+        }
+
+        .markdown-output-container h3 {
+            margin: 0;
+            /* Remove default margin */
+            flex-grow: 1;
+            /* Allow the title to take up available space */
+        }
+
+        /* Ensure the textarea takes up the full width of its container */
+        #markdownOutput {
+            width: 100%;
+            /* Takes the full width */
+            box-sizing: border-box;
+            /* Include padding and border in the element's total width and height */
+            resize: vertical;
+            /* Allows vertical resizing only */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            /* Centers the button horizontally */
+            margin-top: 3px;
+            /* Adds space between the button and any elements above it */
+        }
+
+        hr {
+            height: 1px;
+            background-color: #ccc;
+            /* Light grey line color */
+            border: none;
+            margin-top: 20px;
+            /* Space above the line */
+            margin-bottom: 20px;
+            /* Space below the line */
+        }
+
+        sup.small {
+            font-size: .6em;
+            /* Smaller superscript text */
+            vertical-align: super;
+            color: orangered;
+
+        }
