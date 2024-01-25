@@ -1,3 +1,127 @@
+/* Base styles */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.center-container {
+    width: 100%; /* Use full width on smaller screens */
+    max-width: 800px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-sizing: border-box; /* Include padding in width */
+}
+.paste {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+}
+/* Flex group to stack on smaller screens */
+.flex-group {
+    display: flex;
+    flex-direction: column; /* Stack vertically on smaller screens */
+    gap: 10px;
+}
+
+.flex-item {
+    width: 100%; /* Full width on smaller screens */
+}
+
+/* Input styles */
+input, select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Button styles */
+.button, .button-red, .collapse-button {
+    padding: 7px 7px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    width: 100%; /* Full width buttons on smaller screens */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Responsive media query for larger screens */
+@media (min-width: 600px) {
+    .flex-group {
+        flex-direction: row; /* Horizontal layout on larger screens */
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .flex-item, .button, .button-red, .collapse-button {
+        flex: 1; /* Allow flex items to grow */
+        min-width: 250px; /* Minimum width before wrapping */
+    }
+    
+    /* Adjustments for form elements */
+    .form-container {
+        flex-wrap: nowrap; /* Prevent wrapping on larger screens */
+    }
+
+    .item-input {
+        width: 100%; /* Makes the textarea take up all available space */
+        padding: 10px; /* Add padding inside the textarea */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical; /* Allows the textarea to be resized vertically */
+    }
+    
+
+    .select-input {
+        min-width: 120px; /* Adjust as needed for a responsive design */
+    }
+    
+    .add-item-button {
+        flex-basis: auto; /* Button width adjusts to content */
+    }
+}
+
+/* Other responsive adjustments */
+.output-container, .preview-container {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    border-radius: 4px;
+}
+
+.preview {
+    overflow-x: auto;
+}
+
+/* Use this media query to adjust styles for very small screens */
+@media (max-width: 359px) {
+    body {
+        padding: 10px; /* Less padding on very small screens */
+    }
+
+    .center-container {
+        padding: 15px; /* Less padding on very small screens */
+    }
+    
+    .button, .button-red, .collapse-button {
+        padding: 10px; /* Larger touch targets on very small screens */
+    }
+}
+
+  
+@media (min-width: 810px) {
         .flex-group {
             display: flex;
             justify-content: space-between;
@@ -26,8 +150,8 @@
 
         .center-container {
             max-width: 800px;
-            margin: auto;
-            padding: 20px;
+            margin-top: 20px;
+            padding: 10px;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -35,12 +159,9 @@
 
         .form-group {
             margin-bottom: 1rem;
+            width: 100%; /* or max-width if you want it to be up to a certain width */
         }
-        .paste {
-            padding: 0 18px;
-            display: none;
-            overflow: hidden;
-        }
+
         
 
         label {
@@ -89,9 +210,13 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
-            margin-right: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically if needed */
             /* Add some space between the button and the title */
-            margin-top: 8px;
         }
 
         .button-red:hover {
@@ -226,3 +351,4 @@
             color: orangered;
 
         }
+    }

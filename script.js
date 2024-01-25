@@ -60,12 +60,11 @@ function parseMarkdown() {
 function extractDetailsFromTitleLine(line) {
   // Extract title and image link, stripping markdown syntax
   var titleMatch = line.match(/\[([\*~]*)(.*?)\1\]\((.*?)\)/);
-  var title = titleMatch ? titleMatch[2].replace(/[\*~]/g, '') : ""; // Remove asterisks and tildes
+  var title = titleMatch ? titleMatch[2].replace(/[\*~]/g, "") : ""; // Remove asterisks and tildes
   var imageLink = titleMatch ? titleMatch[3] : "";
 
   return { title, imageLink };
 }
-
 
 function extractDetailsFromPriceLine(line) {
   // Extract price and status
@@ -78,19 +77,23 @@ function extractDetailsFromPriceLine(line) {
 
 // This function checks if a new item row should be added
 function checkForNewItem() {
-    // Get the title of the last item row
-    var lastTitle = document.getElementById(`itemTitle${itemCount}`).value.trim();
-    // If the last title is not empty and there is no next item row, add a new one
-    if (lastTitle !== "" && itemCount === document.querySelectorAll('#itemContainer .container').length) {
-        addItem();
-    }
+  // Get the title of the last item row
+  var lastTitle = document.getElementById(`itemTitle${itemCount}`).value.trim();
+  // If the last title is not empty and there is no next item row, add a new one
+  if (
+    lastTitle !== "" &&
+    itemCount === document.querySelectorAll("#itemContainer .container").length
+  ) {
+    addItem();
+  }
 }
 // This function is called when the title input is changed
 function handleTitleInput(event, index) {
-    if (index === itemCount) { // Only check for new item if the current item is the last one
-        checkForNewItem();
-    }
-    generateMarkdown();
+  if (index === itemCount) {
+    // Only check for new item if the current item is the last one
+    checkForNewItem();
+  }
+  generateMarkdown();
 }
 
 // ... rest of your existing script ...
@@ -111,13 +114,18 @@ function generateMarkdown() {
   }
 
   if (timestampLink !== "") {
+    // Check if timestampLink starts with "https://"
+    if (!timestampLink.startsWith("https://")) {
+      timestampLink = "https://" + timestampLink;
+    }
+
     var timestamp = "[timestamp](" + timestampLink + ")";
     console.log(timestamp); // Or use this link as needed
   } else {
     timestamp = "";
   }
 
-  var markdownText = `${timestamp}\n\n${introText}\n---\n\n`;
+  var markdownText = `${timestamp}\n\n${introText}\n\n --- \n\n`;
 
   markdownText += "| For Sale |\n"; // Adjust the headers
   markdownText += "|-------|\n";
@@ -126,26 +134,37 @@ function generateMarkdown() {
   for (var i = 1; i <= itemCount; i++) {
     var titleInput = document.getElementById(`itemTitle${i}`).value.trim();
     var price = document.getElementById(`itemPrice${i}`).value.trim();
-    var imageLinkInput = document.getElementById(`itemImageLink${i}`).value.trim();
+    var imageLinkInput = document
+      .getElementById(`itemImageLink${i}`)
+      .value.trim();
     var statusSelect = document.getElementById(`itemStatus${i}`);
 
     // Trim the inputs to remove any extra whitespace
     var status = statusSelect.value;
-
+  
     // Skip the loop iteration if the title field is empty
     if (titleInput === "") continue;
 
     if (status === "Sold") {
-        title = "**~~" + titleInput + "~~**";
+      title = "**~~" + titleInput + "~~**";
     } else if (status === "Pending") {
-        title = "***" + titleInput + "***";
-    } else{
-        title = "**" + titleInput + "**"
-        }
-    
+      title = "***" + titleInput + "***";
+    } else {
+      title = "**" + titleInput + "**";
+    }
 
+    if (imageLinkInput !== "") {
+      // Check if timestampLink starts with "https://"
+      if (!imageLinkInput.startsWith("https://")) {
+        imageLinkInput = "https://" + imageLinkInput;
+      }
+  
+      var linkedTitle = imageLinkInput ? `[${title}](${imageLinkInput})` : title;
+      console.log(linkedTitle); // Or use this link as needed
+  } else {
+    linkedTitle = title;
+  }
     // Make the title a hyperlink if an image link is provided
-    var linkedTitle = imageLinkInput ? `[${title}](${imageLinkInput})` : title;
 
     // Use caret for superscript in Markdown and <sup> for HTML rendering
     var priceAndStatusMarkdown = `^(--$${price} / ${status})`;
@@ -153,7 +172,7 @@ function generateMarkdown() {
     // Concatenate the row for the Markdown output
     markdownText += `| ${linkedTitle} |\n|${priceAndStatusMarkdown}|\n||\n`;
   }
-  markdownText += `\n---\n${outroText}\n${userNameLink}\n`;
+  markdownText += `\n---\n${outroText}\n\n${userNameLink}\n\n`;
 
   var markdownOutput = document.getElementById("markdownOutput");
   markdownOutput.value = markdownText; // Set the text in the textarea element
@@ -194,22 +213,21 @@ function clearAllFields() {
 }
 
 // ... rest of your existing script ...
-document.addEventListener("DOMContentLoaded", function() {
-    var collapsible = document.querySelector('.collapse-button');
-    var content = document.querySelector('.paste');
+document.addEventListener("DOMContentLoaded", function () {
+  var collapsible = document.querySelector(".collapse-button");
+  var content = document.querySelector(".paste");
 
-    collapsible.addEventListener('click', function() {
-        this.classList.toggle("active");
-        if (content.style.display === "block") {
-            content.style.display = "none";
-            collapsible.innerHTML = "🔀 Paste";
-        } else {
-            content.style.display = "block";
-            collapsible.innerHTML = "🫣 Hide";
-
-        }
-    });
-})
+  collapsible.addEventListener("click", function () {
+    this.classList.toggle("active");
+    if (content.style.display === "block") {
+      content.style.display = "none";
+      collapsible.innerHTML = "🔀 Reposting ";
+    } else {
+      content.style.display = "block";
+      collapsible.innerHTML = "🫣 Hide";
+    }
+  });
+});
 
 function copyMarkdown() {
   // Use `.value` for textarea instead of `.innerText`
@@ -222,7 +240,5 @@ function copyMarkdown() {
     function (err) {
       console.error("Could not copy text: ", err);
     }
-
-    
   );
 }
